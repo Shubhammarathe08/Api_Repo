@@ -1,15 +1,10 @@
 
 
 
-import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
-import io.restassured.specification.ResponseSpecification;
 
 import static io.restassured.RestAssured.*;
-public class Post_Example {
+public class PostExample {
 
     public static void main(String[] args){
 

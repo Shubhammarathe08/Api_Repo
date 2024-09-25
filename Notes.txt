@@ -42,3 +42,52 @@ in a single statement without requiring result to be stored in any variable
 ==================== how to start ====================
 1. what http methods endpoint supports
 2. base url + endpoint + path param + query param
+
+================== path param ================
+only applicable to path after /
+https://restful-booker.herokuapp.com/booking/1
+
+Way 1:- given().pathParam("path","booking").pathParam("id",4)
+                .when()
+                   .get(base_url+"/{path}/{id}")
+
+Way 2:- given()
+              .when()
+                   .get(base_url+"/{base_path}/{id}","booking",2)
+
+Way 3:- given()
+                .baseUri(base_url).basePath(base_path).pathParam("id",10)
+                      .when().get()
+
+Way 4:-  Map<String,Object> h_m = new HashMap<>();
+                h_m.put("b_path","booking");
+                h_m.put("idd","2");
+
+                given()
+                .baseUri(base_url).basePath(base_path).pathParams(h_m)
+                .when().get()
+
+===================== Get ===============
+===================== Post ===============
+===================== Put vs Patch ===============
+
+Put
+ >> replaces old resource with new resource with new payload
+ >> if old resource not found, creates one at specified endpoint
+ >> idempotent - same effect on multiple hits
+ >> 200 , 201 , 204
+
+Patch
+ >> Update old resource partially
+ >> represents what part of resource must be updated ,
+    doesn't take whole resource into account
+ >> if resource not found , will not create new one
+ >> can or can nt be idempotent - same effect on multiple hits
+ >> 200 , 204
+========================= Delete =============
+ >> delete old resource if present
+ >> if old resource not found, throws status code 404
+ >> 200 , 202 , 204
+ >> idempotent - same effect on multiple hits
+ >> may or may not have Request/Response body
+
