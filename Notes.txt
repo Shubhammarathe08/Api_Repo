@@ -1,0 +1,44 @@
+
+=====================  API  ========================
+“An API is a set of codes and rules
+which allows two or more than two applications to communicate with each other
+internally or externally
+and provide a result to end users or to another API.“.
+
+====================  RestAssured  =========================
+** current version 5.5.0
+
+1. java library >> built over Apache HTTP client
+ >> to test and validate Restful and SOAP -  APi and WebServices
+2. supports HTTP methods like
+ >> get , post, put , patch, delete , options, head
+3. Open Source free project
+4. support JSON, XMl - path and schema validation
+5. have assertions to check Response and validate data, status code,other properties.
+6. can be integrated with - third party reporting
+
+====================== Static Imports ====================
+
+
+Using static imports in Rest Assured,
+we can directly use the methods given in a particular Class
+without specifying the name of the Class or creating an object of the Class.
+For example, instead of writing RestAssured.given().when()…,
+we can simply write do a static import of io.restassured.RestAssured.*
+and directly write given.when()….
+which is a bit simpler and easier to read
+
+
+==================== Method Chaining ===================
+Java Method Chaining
+allows developers to call multiple methods
+belonging to a particular object
+in a single statement.
+
+each method returns an object and allows.
+allows calls to be chained together
+in a single statement without requiring result to be stored in any variable
+
+==================== how to start ====================
+1. what http methods endpoint supports
+2. base url + endpoint + path param + query param
