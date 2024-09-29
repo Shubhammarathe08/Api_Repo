@@ -24,9 +24,9 @@ public class DeleteExample {
                 .header("Accept","application/json")
                 .header("Authorization","Basic YWRtaW46cGFzc3dvcmQxMjM=")
                 .log().all()
-                   .when()
+        .when()
                        .delete()
-                   .then()
+        .then()
                         .statusCode(201)
                         .log().all();
     }

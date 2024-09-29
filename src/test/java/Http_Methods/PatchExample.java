@@ -9,26 +9,10 @@ public class PatchExample {
     public static void main(String[] args){
         String base_url = "https://restful-booker.herokuapp.com";
         String base_path = "/{path}/{id}";
-        String pathch_body = "{\n" +
-                "    \"firstname\" : \"eeeeeee\",\n" +
-                "    \"lastname\" : \"wwwwwwwww\"\n" +
+        String patch_body = "{\n" +
+                "    \"firstname\" : \"patch kro\",\n" +
+                "    \"lastname\" : \"sachhi mucchi\"\n" +
                 "}";
-
-
-//        given()
-//                .contentType(ContentType.JSON)
-//                .baseUri(base_url)
-//                .basePath(base_path)
-//                .pathParam("id", 1)
-//                .header("Content-Type", "application/json")
-//                .header("Accept", "application/json")
-//                .header("Authorization", "Basic YWRtaW46cGFzc3dvcmQxMjM=")
-//                .body(pathch_body).log().all()
-//                .when()
-//                   .patch()
-//                .then()
-//                  .log().all();
-
 
         given()
                 .contentType(ContentType.JSON)
@@ -39,10 +23,13 @@ public class PatchExample {
                 .header("Content-Type", "application/json")
                 .header("Accept", "application/json")
                 .header("Authorization", "Basic YWRtaW46cGFzc3dvcmQxMjM=")
-                .body(pathch_body).log().all()
-                .when()
+                .body(patch_body)
+                .log().all()
+        .when()
                 .patch()
-                .then()
-                .log().all();
+        .then()
+                .log().all()
+                .assertThat()
+                .statusCode(200);
     }
 }
