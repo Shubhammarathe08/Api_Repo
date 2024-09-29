@@ -1,0 +1,72 @@
+[
+  {
+    "id": 1,
+    "name": "Gudakesa Menon",
+    "email": "menon_gudakesa@kohler.example",
+    "gender": "male",
+    "status": "active"
+  },
+  {
+    "id": 2,
+    "name": "Girja Malik",
+    "email": "girja_malik@monahan.example",
+    "gender": "female",
+    "status": "active"
+  },
+  {
+    "id": 3,
+    "name": "Dharmaketu Gandhi",
+    "email": "gandhi_dharmaketu@hermiston-fay.example",
+    "gender": "female",
+    "status": "inactive"
+  },
+  {
+    "id": 4,
+    "name": "Meghnad Sethi",
+    "email": "meghnad_sethi@halvorson.test",
+    "gender": "female",
+    "status": "inactive"
+  },
+  {
+    "id": 5,
+    "name": "Bhaumik Bhat",
+    "email": "bhaumik_bhat@gusikowski.test",
+    "gender": "female",
+    "status": "inactive"
+  },
+  {
+    "id": 6,
+    "name": "Ms. Kailash Iyengar",
+    "email": "kailash_ms_iyengar@fritsch.test",
+    "gender": "male",
+    "status": "active"
+  },
+  {
+    "id": 7,
+    "name": "Krishna Varman",
+    "email": "krishna_varman@cormier-schowalter.example",
+    "gender": "female",
+    "status": "active"
+  },
+  {
+    "id": 8,
+    "name": "Prof. Bhaanumati Deshpande",
+    "email": "deshpande_prof_bhaanumati@labadie-swaniawski.test",
+    "gender": "male",
+    "status": "inactive"
+  },
+  {
+    "id": 9,
+    "name": "Krishnadas Prajapat",
+    "email": "prajapat_krishnadas@weber.example",
+    "gender": "female",
+    "status": "active"
+  },
+  {
+    "id": 10,
+    "name": "Rev. Yoginder Kapoor",
+    "email": "yoginder_rev_kapoor@stroman-little.test",
+    "gender": "male",
+    "status": "active"
+  }
+]

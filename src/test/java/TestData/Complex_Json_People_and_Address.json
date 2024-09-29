@@ -1,0 +1,57 @@
+{
+  "data":[
+    {
+      "id": 1,
+      "name": "Aanand Iyer",
+      "email": "aanand_iyer@wilkinson-roob.example",
+      "gender": "female",
+      "status": "active",
+      "city":"bhopal"
+    },
+    {
+      "id": 2,
+      "name": "Ekaling Malik",
+      "email": "ekaling_malik@white.test",
+      "gender": "female",
+      "status": "active",
+      "city":"delhi"
+    },
+    {
+      "id": 3,
+      "name": "Kalinda Khatri",
+      "email": "kalinda_khatri@cruickshank.test",
+      "gender": "male",
+      "status": "active",
+      "city":"kolkata"
+    },
+    {
+      "firstname":"rajesh",
+      "is_alive":true,
+      "addresses":[
+        {
+          "state":"maharsahtra",
+          "city":"pune"
+        },
+        {
+          "state":"madhya pardesh",
+          "city":"burhanpur"
+        }
+      ]
+    },
+    {
+      "firstname":"suresh",
+      "is_alive":false,
+      "addresses":[
+        {
+          "state":"andhra",
+          "city":"hydrabad"
+        },
+        {
+          "state":"kerala",
+          "city":"punnu"
+        }
+      ]
+    }
+
+  ]
+}

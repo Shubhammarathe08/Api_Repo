@@ -7,8 +7,24 @@ and provide a result to end users or to another API.“.
 
 ====================  RestAssured  =========================
 ** current version 5.5.0
+who maintains >>
+old groupid- jayway.restassured | 2.9.0
+new groupid- io.restassured | 3.0.0
 
-1. java library >> built over Apache HTTP client
+Imp libraries -
+1. jackson
+>>jackson-bind
+>>jackson-core
+2. Gson
+3. json-Schema-Validator
+4. lombok
+5.
+6. XAMB >> atlast if nothing found
+
+
+
+
+1. java library >> built over Apache HTTP client / HTTP builder
  >> to test and validate Restful and SOAP -  APi and WebServices
 2. supports HTTP methods like
  >> get , post, put , patch, delete , options, head
@@ -16,16 +32,18 @@ and provide a result to end users or to another API.“.
 4. support JSON, XMl - path and schema validation
 5. have assertions to check Response and validate data, status code,other properties.
 6. can be integrated with - third party reporting
+7. old - jayway.restassured  now - io.restassured
 
 ====================== Static Imports ====================
 
+feature -that allows public and static  >> var, methods
+| to be accessed directly ,without using class or object reference
 
-Using static imports in Rest Assured,
-we can directly use the methods given in a particular Class
-without specifying the name of the Class or creating an object of the Class.
-For example, instead of writing RestAssured.given().when()…,
+For example, instead of writing
+>> RestAssured.given().when()…,
 we can simply write do a static import of io.restassured.RestAssured.*
-and directly write given.when()….
+and directly write
+>> given.when()….
 which is a bit simpler and easier to read
 
 
@@ -39,6 +57,32 @@ each method returns an object and allows.
 allows calls to be chained together
 in a single statement without requiring result to be stored in any variable
 
+public class MethodChaining {
+
+     public MethodChaining m1(){
+        System.out.println(" m1 method ");
+        return this;
+    };
+
+     public MethodChaining m2(int a, int b){
+        System.out.println("a "+"b >>"+(a+b));
+        return this;
+    };
+
+     public MethodChaining m3(String ip){
+        System.out.println(ip.length()+" >> length of ip string");
+        return this;
+    };
+
+}
+
+       //method chaining,on single object, w/o need to store o/p
+        MethodChaining m = new MethodChaining();
+        m.m1().m2(2,22).m3(" Shubham ");
+================= Imp Maven Dependencies ==================
+1. io.rest.restassured
+  >> given, when, then, HemCrestMatchers, response, requestspecification ,
+      response specification, jsonpath, xmlpath, groovy
 ==================== how to start ====================
 1. what http methods endpoint supports
 2. base url + endpoint + path param + query param
@@ -90,4 +134,6 @@ Patch
  >> 200 , 202 , 204
  >> idempotent - same effect on multiple hits
  >> may or may not have Request/Response body
+================= Response Time ====================
 
+Time between request hit and response arrival

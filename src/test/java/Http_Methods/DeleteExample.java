@@ -1,3 +1,5 @@
+package Http_Methods;
+
 import io.restassured.http.ContentType;
 
 import java.util.HashMap;

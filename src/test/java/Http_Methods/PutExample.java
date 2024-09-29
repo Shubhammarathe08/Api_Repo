@@ -1,4 +1,4 @@
-import io.restassured.http.ContentType;
+package Http_Methods;
 
 import static io.restassured.RestAssured.given;
 

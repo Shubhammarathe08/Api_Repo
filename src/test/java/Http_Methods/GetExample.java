@@ -1,8 +1,7 @@
+package Http_Methods;
+
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
-import io.restassured.response.Response;
-import io.restassured.response.ValidatableResponse;
-import io.restassured.specification.RequestSpecification;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +15,7 @@ public class GetExample {
         String base_url  = "https://restful-booker.herokuapp.com";
         RestAssured.baseURI = "https://restful-booker.herokuapp.com";
         String base_path = "/{b_path}/{id}";
+        basePath = "/{b_path}/{id}";
         String body = ""; //not needed in Get Request
 //
 //        RequestSpecification req_res = given();
@@ -69,20 +69,43 @@ public class GetExample {
 //                .then()
 //                .statusCode(200).log().all();
 
- Map<String,Object> h_m = new HashMap<>();
-        h_m.put("b_path","booking");
-        h_m.put("id","2");
+// Map<String,Object> h_m = new HashMap<>();
+//        h_m.put("b_path","booking");
+//        h_m.put("id","2");
+//
+//        given()
+//                .contentType(ContentType.JSON)
+//                .baseUri(base_url)
+//                .basePath(base_path)
+//                .pathParams(h_m)
+//                .log().all()
+//                .when()
+//                .get()
+//                .then()
+//                .statusCode(200).log().all();
+
+
+
+//        given()
+//                .pathParam("b_path","booking")
+//                .pathParam("id","1")
+//                .log().all().
+//        when()
+//                .get().
+//        then()
+//                .log()
+//                .all();
+
 
         given()
-                .contentType(ContentType.JSON)
-                .baseUri(base_url)
-                .basePath(base_path)
-                .pathParams(h_m)
-                .log().all()
-                .when()
-                .get()
-                .then()
-                .statusCode(200).log().all();
+                .log().all().
+        when()
+                .get("https://restful-booker.herokuapp.com/booking/4").
+        then()
+                .log()
+                .all()
+                .statusCode(200);
+
 
 
 
