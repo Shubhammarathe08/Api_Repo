@@ -1,13 +1,10 @@
 import io.restassured.RestAssured;
-import io.restassured.config.*;
-import io.restassured.config.RestAssuredConfig;
-import org.apache.http.Header;
 
 import java.util.HashMap;
 
 import static io.restassured.RestAssured.given;
 
-public class MultipleHeadsers {
+public class Pass_Header_Headers {
 
     public static void main(String[] args){
 
@@ -25,23 +22,26 @@ public class MultipleHeadsers {
                 "    \"additionalneeds\" : \"Breakfast\"\n" +
                 "}";
 
-//        given()
-//                .pathParam("id",1)
-//                .header("Content-Type","application/json")
-//                .header("Accept","application/json")
-//                .header("Authorization","Basic YWRtaW46cGFzc3dvcmQxMjM=")
-//                .body(payload).log().all()
-//                .when().put()
-//                .then().log().all();
 
-//        given()
-//                .pathParam("id",1)
-//                .headers("Content-Type","application/json",
-//                        "Accept","application/json",
-//                        "Authorization","Basic YWRtaW46cGFzc3dvcmQxMjM=")
-//                .body(payload).log().all()
-//                .when().put()
-//                .then().log().all();
+                // 1. one by one
+                //      .header("Content-Type","application/json")
+                //       .header("Accept","application/json")
+                //       .header("Authorization","Basic YWRtaW46cGFzc3dvcmQxMjM=")
+
+                // 2. Headers >>
+                // a. pass multiple headers directly
+                //      .headers("Content-Type","application/json",
+                //                "Accept","application/json",
+               //                 "Authorization","Basic YWRtaW46cGFzc3dvcmQxMjM=")
+
+              // a. pass multiple headers directly
+              //        HashMap<String, String> h_map = new HashMap<>();
+        //        h_map.put("Content-Type","application/json");
+        //        h_map.put("Accept","application/json");
+        //        h_map.put("Authorization","Basic YWRtaW46cGFzc3dvcmQxMjM=");
+        //
+        //        .headers(h_map)
+
 
         HashMap<String, String> h_map = new HashMap<>();
         h_map.put("Content-Type","application/json");

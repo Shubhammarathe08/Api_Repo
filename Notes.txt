@@ -79,10 +79,17 @@ public class MethodChaining {
        //method chaining,on single object, w/o need to store o/p
         MethodChaining m = new MethodChaining();
         m.m1().m2(2,22).m3(" Shubham ");
+================ Header ===========================
+Data about Data >> metadata
+
 ================= Imp Maven Dependencies ==================
 1. io.rest.restassured
   >> given, when, then, HemCrestMatchers, response, requestspecification ,
       response specification, jsonpath, xmlpath, groovy
+2. org.testng
+3.
+4.
+
 ==================== how to start ====================
 1. what http methods endpoint supports
 2. base url + endpoint + path param + query param
@@ -135,8 +142,17 @@ Patch
  >> idempotent - same effect on multiple hits
  >> may or may not have Request/Response body
 ================= Response Time ====================
-
 Time between request hit and response arrival
+==========  JsonPath ================
 
-==============================================================================
+"$" >> root node | whole response body
+"." >> child nodes
+"[]" >> array/list
+""
+""
+""
+""
+"'"
+
+
 

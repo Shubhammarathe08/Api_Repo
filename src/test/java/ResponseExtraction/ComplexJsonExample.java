@@ -164,7 +164,7 @@ public class ComplexJsonExample {
                 "  }\n" +
                 "]";
 
-        String file_path = "C:\\Users\\Lenovo\\Java_Projects\\Api_Automation\\TestData\\Complex_Json_People.json";
+        String file_path = "C:\\Users\\Lenovo\\Java_Projects\\Api_Automation\\TestData\\Complex_Array_People.json";
         File f = new File(file_path);
         JsonPath js_1 = new JsonPath(f);
 
@@ -220,7 +220,7 @@ public class ComplexJsonExample {
 
         System.out.println("///////////////////////////////////////////////////////////////////////////////////////////////////");
 
-        String file_path1 = "C:\\Users\\Lenovo\\Java_Projects\\Api_Automation\\TestData\\Complex_Json_People_and_Address.json";
+        String file_path1 = "C:\\Users\\Lenovo\\Java_Projects\\Api_Automation\\TestData\\Complex_Object_People_Address.json";
         File f1 = new File(file_path1);
         JsonPath js_2 = new JsonPath(f1);
 

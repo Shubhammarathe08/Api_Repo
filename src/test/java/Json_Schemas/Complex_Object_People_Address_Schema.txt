@@ -1,0 +1,209 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "data": {
+      "type": "array",
+      "items": [
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "gender": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "email",
+            "gender",
+            "status",
+            "city"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "gender": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "email",
+            "gender",
+            "status",
+            "city"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "id": {
+              "type": "integer"
+            },
+            "name": {
+              "type": "string"
+            },
+            "email": {
+              "type": "string"
+            },
+            "gender": {
+              "type": "string"
+            },
+            "status": {
+              "type": "string"
+            },
+            "city": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "id",
+            "name",
+            "email",
+            "gender",
+            "status",
+            "city"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "firstname": {
+              "type": "string"
+            },
+            "is_alive": {
+              "type": "boolean"
+            },
+            "addresses": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "state": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "state",
+                    "city"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "state": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "state",
+                    "city"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "firstname",
+            "is_alive",
+            "addresses"
+          ]
+        },
+        {
+          "type": "object",
+          "properties": {
+            "firstname": {
+              "type": "string"
+            },
+            "is_alive": {
+              "type": "boolean"
+            },
+            "addresses": {
+              "type": "array",
+              "items": [
+                {
+                  "type": "object",
+                  "properties": {
+                    "state": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "state",
+                    "city"
+                  ]
+                },
+                {
+                  "type": "object",
+                  "properties": {
+                    "state": {
+                      "type": "string"
+                    },
+                    "city": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "state",
+                    "city"
+                  ]
+                }
+              ]
+            }
+          },
+          "required": [
+            "firstname",
+            "is_alive",
+            "addresses"
+          ]
+        }
+      ]
+    }
+  },
+  "required": [
+    "data"
+  ]
+}

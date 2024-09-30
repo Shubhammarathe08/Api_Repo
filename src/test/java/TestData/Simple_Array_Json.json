@@ -1,0 +1,32 @@
+[
+
+  {
+    "id": 1,
+    "name": "Aanand Iyer",
+    "email": "aanand_iyer@wilkinson-roob.example",
+    "gender": "female",
+    "status": true,
+    "city":"bhopal"
+  },
+  {
+    "firstname":"rajesh",
+    "is_alive":true,
+    "addresses":[
+      {
+        "state":"maharsahtra",
+        "city":"pune"
+      },
+      {
+        "state":"madhya pardesh",
+        "city":"burhanpur"
+      }
+    ]
+  },
+  [
+    "shubham",
+    "satyam",
+    "nilesh",
+    "rani"
+  ]
+
+]
