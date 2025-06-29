@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "first_name": "Claire",
+    "last_name": "Dennerley",
+    "email": "cdennerley0@uol.com.br",
+    "gender": "Genderfluid",
+    "mobile": [
+      "1232432432",
+      "324324324"
+    ],
+    "skills": {
+      "name": "Testing",
+      "proficiency": "Medium"
+    }
+  },
+  {
+    "id": 2,
+    "first_name": "Cloe",
+    "last_name": "Stuehmeyer",
+    "email": "cstuehmeyer1@yellowpages.com",
+    "gender": "Female",
+    "skills": [
+      {
+        "name": "Testing",
+        "proficiency": "Medium"
+      },
+      {
+        "name": "Java",
+        "proficiency": "Medium",
+        "certifications": [
+          "OCJP 11",
+          "OCJP 12"
+        ]
+      }
+    ]
+  }
+]

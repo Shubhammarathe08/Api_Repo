@@ -1,0 +1,80 @@
+API
+
+Framework
+>> useful foundational elements
+Which eventually become sharable, reusable and extendable over the period of time
+
+
+Know the requirement
+>>can start w/o knowing application
+>>know capability of framework
+>>quick setup
+>>easy to use
+>>good documentation
+
+
+Folder structure >> Tests folders | Test data | Utility | Results | Reports
+Base page + Launch browser + cross browser + headless
+Running mechanism + Parallel execution + Re execution + Screenshots + Loggers + Remote
+Maintaining dependency + Reporting
+Utility + Data generators + Image storages + Keyboard actions + file download + image
+How to store locators + Exception handling
+Payload + Schema + Serialization + DeSerialization + mocking + base urls + common element
+Backend integration + db
+Data reader + fake data generators
+
+>>>>>>>>>>>>  Rest Assured  >>>>>>>>>
+
+Generic to all | not specific to anything - automate Rest Api
+
+Urls - base url + endpoints
+
+Utility >> to call >> Http methods - basic - get , post , put , patch , delete
+Overloaded methods ()
+
+Json utility >> to read/edit/write/assert
+
+Customised assertions
+
+Running mechanism + Re-execution + Reporting (detail + steps + screenshot + pass/fail details)
+
+Generic utility - data faker , date operator
+
+
+
+                                                         My Framework
+
+IDE – IntelliJ
+
+
+Programming Language - Java
+
+
+Rest API Automation Tool – Rest Assured
+
+
+Testing Framework – TestNG
+
+
+Build Tool - Maven
+
+
+Reporting – ExtentReport / allure
+
+
+JSON Parser – Jackson, GSON
+
+
+Supporting Tools – JavaFaker, Lombok, Apache Common Lang
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+                                         Dependency
+
+Core >> RestAssured
+Json Parsor >> jackson bind , gson
+Data faker >> java faker , lombok , apache commons lang
+Reporting >> extent reports
+Testing Framework >> testng
+
+

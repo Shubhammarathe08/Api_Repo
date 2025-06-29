@@ -1,6 +1,7 @@
 package Response_Parsing;
 
 import io.restassured.RestAssured;
+import io.restassured.http.ContentType;
 
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
@@ -84,6 +85,7 @@ public class Response_To_Map_Simple_Object {
 
         System.out.println("###############################################################");
         given()
+                .contentType(ContentType.JSON)
                 .body(Obj_Payload)
                 .log()
                 .all()

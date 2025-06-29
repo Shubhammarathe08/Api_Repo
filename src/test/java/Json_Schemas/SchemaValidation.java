@@ -25,6 +25,8 @@ public class SchemaValidation {
                "\\src\\test\\java\\Json_Schemas\\Complex_Object_People_Address_Schema.txt");
 
         val_res.body(JsonSchemaValidator.matchesJsonSchema(temp));
+        // schema >> definition , structure , blueprint
+        // can ignore / un-imp fields or can be empty
 
 
 
