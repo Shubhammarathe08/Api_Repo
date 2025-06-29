@@ -11,41 +11,81 @@
   <url>http://maven.apache.org</url>
 
   <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.8</maven.compiler.source>
-    <maven.compiler.taregt>1.8</maven.compiler.taregt>
+    <junit_version>3.8.1</junit_version>
+    <rest_assured_version>5.4.0</rest_assured_version>
+    <testng_version>7.10.2</testng_version>
+    <jackson_databind_version>2.19.0</jackson_databind_version>
+    <gson_version>2.12.1</gson_version>
+    <extentreports_version>5.0.9</extentreports_version>
+    <lombok_version>1.18.30</lombok_version>
+    <javafaker_version>1.0.2</javafaker_version>
+    <commons_lang3_version>3.17.0</commons_lang3_version>
+    <json_schema_validator_version>5.5.0</json_schema_validator_version>
   </properties>
 
   <dependencies>
-
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>3.8.1</version>
+      <version>${junit_version}</version>
       <scope>test</scope>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/io.rest-assured/rest-assured -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>rest-assured</artifactId>
-      <version>5.5.0</version>
+      <version>${rest_assured_version}</version>
       <scope>test</scope>
     </dependency>
 
-    <!-- https://mvnrepository.com/artifact/org.testng/testng -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
-      <version>6.10</version>
+      <version>${testng_version}</version>
       <scope>test</scope>
+    </dependency>
+
+    <dependency>
+      <groupId>com.fasterxml.jackson.core</groupId>
+      <artifactId>jackson-databind</artifactId>
+      <version>${jackson_databind_version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.google.code.gson</groupId>
+      <artifactId>gson</artifactId>
+      <version>${gson_version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.aventstack</groupId>
+      <artifactId>extentreports</artifactId>
+      <version>${extentreports_version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>${lombok_version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>com.github.javafaker</groupId>
+      <artifactId>javafaker</artifactId>
+      <version>${javafaker_version}</version>
+    </dependency>
+
+    <dependency>
+      <groupId>org.apache.commons</groupId>
+      <artifactId>commons-lang3</artifactId>
+      <version>${commons_lang3_version}</version>
     </dependency>
 
     <!-- https://mvnrepository.com/artifact/io.rest-assured/json-schema-validator -->
     <dependency>
       <groupId>io.rest-assured</groupId>
       <artifactId>json-schema-validator</artifactId>
-      <version>5.5.0</version>
+      <version>${json_schema_validator_version}</version>
     </dependency>
 
   </dependencies>
