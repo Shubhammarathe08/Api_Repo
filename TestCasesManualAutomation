@@ -1,0 +1,26 @@
+| **Type**            | **Scenario**                 | **Test Steps**                                       | **Expected Result**                                   |
+| ------------------- | ---------------------------- | ---------------------------------------------------- | ----------------------------------------------------- |
+| **Manual Positive** | Valid login                  | Enter correct username and password, click login     | User navigates to homepage                            |
+| **Manual Positive** | Search functionality         | Enter valid search keyword                           | Displays correct search results                       |
+| **Manual Positive** | Form submission              | Fill all mandatory fields with valid data and submit | Form is submitted successfully with confirmation      |
+| **Manual Positive** | API GET request              | Call GET endpoint with valid ID                      | Returns **200 OK** with correct data                  |
+| **Manual Positive** | API POST request             | Call POST endpoint with valid payload                | Returns **201 Created** with created resource details |
+| **Manual Negative** | Invalid login                | Enter wrong password and click login                 | Displays error: **Invalid credentials**               |
+| **Manual Negative** | Mandatory field validation   | Leave mandatory field empty and submit               | Shows **validation error** for missing field          |
+| **Manual Negative** | Invalid API GET              | Call GET endpoint with invalid ID                    | Returns **404 Not Found** with error message          |
+| **Manual Negative** | API POST with missing fields | Send payload missing required field                  | Returns **400 Bad Request** with error detail         |
+| **Manual Negative** | Unauthorized API call        | Call secured API without token                       | Returns **401 Unauthorized**                          |
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+| **Type**                    | **Test Case**           | **Code Snippet**                                                                                                                                                                                                                   | **Expected Result**                       |
+| --------------------------- | ----------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| **API Automation Positive** | GET user details        | `java given().baseUri("https://reqres.in").when().get("/api/users/2").then().statusCode(200).body("data.id", equalTo(2)); `                                                                                                        | Returns **200 OK** with user details      |
+| **API Automation Positive** | Create new user         | `java given().baseUri("https://reqres.in").header("Content-Type","application/json").body("{ \"name\": \"morpheus\", \"job\": \"leader\" }").when().post("/api/users").then().statusCode(201).body("name", equalTo("morpheus")); ` | Returns **201 Created** with created user |
+| **API Automation Negative** | GET invalid user        | `java given().baseUri("https://reqres.in").when().get("/api/users/9999").then().statusCode(404); `                                                                                                                                 | Returns **404 Not Found**                 |
+| **API Automation Negative** | POST with missing field | `java given().baseUri("https://reqres.in").header("Content-Type","application/json").body("{ \"job\": \"leader\" }").when().post("/api/users").then().statusCode(400); `                                                           | Returns **400 Bad Request**               |
+
+
+=========================================================================================================================================================================================================================================================================================

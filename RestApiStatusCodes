@@ -1,0 +1,27 @@
+| **Code** | **Category**      | **Meaning**               | **Scenario / When it Occurs**                                         |
+| -------- | ----------------- | ------------------------- | --------------------------------------------------------------------- |
+| **100**  | 1xx Informational | Continue                  | Large payloads ➔ server signals ready to receive body after headers   |
+
+| **200**  | 2xx Success       | OK                        | GET, PUT, DELETE, or POST (no resource created) successful            |
+| **201**  | 2xx Success       | Created                   | POST request creates new resource (user, order)                       |
+| **202**  | 2xx Success       | Accepted                  | Async request accepted but not yet processed (e.g. queue)             |
+| **204**  | 2xx Success       | No Content                | DELETE or PUT request successful with no response body                |
+
+| **301**  | 3xx Redirection   | Moved Permanently         | Resource permanently moved to a new URL                               |
+| **302**  | 3xx Redirection   | Found (Moved Temporarily) | Resource temporarily at a different URL                               |
+| **304**  | 3xx Redirection   | Not Modified              | Client cached copy is still valid; no new data sent                   |
+
+| **400**  | 4xx Client Error  | Bad Request               | Invalid syntax, missing fields, malformed JSON                        |
+| **401**  | 4xx Client Error  | Unauthorized              | Missing/invalid authentication token or credentials                   |
+| **403**  | 4xx Client Error  | Forbidden                 | Authenticated but no permission to access resource                    |
+| **404**  | 4xx Client Error  | Not Found                 | Resource URL or ID does not exist                                     |
+| **405**  | 4xx Client Error  | Method Not Allowed        | Using unsupported HTTP method on endpoint (e.g. POST on GET-only API) |
+| **409**  | 4xx Client Error  | Conflict                  | Duplicate resource creation; request conflicts with server state      |
+| **415**  | 4xx Client Error  | Unsupported Media Type    | Sending data in unsupported format (e.g. XML instead of JSON)         |
+| **429**  | 4xx Client Error  | Too Many Requests         | Rate limit exceeded for API usage                                     |
+
+| **500**  | 5xx Server Error  | Internal Server Error     | Generic server error, unhandled exceptions                            |
+| **501**  | 5xx Server Error  | Not Implemented           | Server does not support requested functionality or method             |
+| **502**  | 5xx Server Error  | Bad Gateway               | Invalid response from upstream server (API gateway issue)             |
+| **503**  | 5xx Server Error  | Service Unavailable       | Server is down for maintenance or overloaded                          |
+| **504**  | 5xx Server Error  | Gateway Timeout           | Upstream server took too long to respond (proxy timeout)              |

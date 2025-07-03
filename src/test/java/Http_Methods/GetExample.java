@@ -7,6 +7,8 @@ import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
 import org.testng.Assert;
 
+import java.util.concurrent.TimeUnit;
+
 import static io.restassured.RestAssured.given;
 
 public class GetExample {
@@ -19,11 +21,11 @@ public class GetExample {
                  when() // return type RequestSpecification
                   .get("https://restful-booker.herokuapp.com/booking/4");
 
-        System.out.println(res);
-        res.getStatusCode();
-        res.headers();
-        res.time();
-        res.body();
+        System.out.println(res.asString());
+        System.out.println( res.getStatusCode() );
+        System.out.println( res.headers() );
+        System.out.println( res.timeIn(TimeUnit.SECONDS) );
+        System.out.println( res.body().asString() );
 
 
 //
