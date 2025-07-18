@@ -17,11 +17,11 @@ public class Response_To_Map_TypeRef_Simple_Object {
         // new TypeRef<>(){} -> abstract
 
         System.out.println("###############################################################");
-        Map<String,String> res_store = given()
-                .get("https://run.mocky.io/v3/4c35f356-4fe3-4ce9-abbc-325e69982af4")
+        Map<String,Object> res_store = given()
+                .get("https://mocki.io/v1/bbb8663e-33bf-4f6b-8748-0dbe077cd086")
                 //.as(Map.class);
-                .as(new TypeRef<Map<String, String>>() {
-                });
+                // For {}
+                .as(new TypeRef<Map<String, Object>>() {});
 
         System.out.println(res_store);
 

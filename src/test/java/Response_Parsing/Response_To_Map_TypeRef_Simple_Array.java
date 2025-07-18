@@ -14,7 +14,7 @@ public class Response_To_Map_TypeRef_Simple_Array {
 
         System.out.println("###############################################################");
         List<Map<String,String>> res_store = given()
-                .get("https://run.mocky.io/v3/d124be52-8f5f-4392-87e7-ed92023c908e")
+                .get("https://mocki.io/v1/bbb8663e-33bf-4f6b-8748-0dbe077cd086")
                 //.as(Map.class);
                 .as(new TypeRef<List<Map<String, String>>>() {
                 });

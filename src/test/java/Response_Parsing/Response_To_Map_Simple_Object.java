@@ -68,9 +68,9 @@ public class Response_To_Map_Simple_Object {
      Obj_Payload.put("Expense",Expense);
 
         System.out.println("###############################################################");
+        // parsing as MAP.class
         Map res_store = given()
                 .get("https://run.mocky.io/v3/390a4b47-3594-49a1-b440-9e20dee30511")
-                //.as(Map.class);
                 .as(Map.class);
 
         System.out.println(res_store);
@@ -84,6 +84,7 @@ public class Response_To_Map_Simple_Object {
 
 
         System.out.println("###############################################################");
+        // passing as payload
         given()
                 .contentType(ContentType.JSON)
                 .body(Obj_Payload)

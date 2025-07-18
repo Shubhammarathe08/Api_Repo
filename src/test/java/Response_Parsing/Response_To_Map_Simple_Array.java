@@ -54,6 +54,7 @@ public class Response_To_Map_Simple_Array {
         List_Payload.add(sibling_names);
 
         System.out.println("###############################################################");
+        // parsing as MAP.class
         List res_store = given()
                 .get("https://run.mocky.io/v3/e25a0c19-d183-4bea-85c0-60845a3bcea5")
                 //.as(Map.class);
@@ -69,6 +70,7 @@ public class Response_To_Map_Simple_Array {
         System.out.println(names.get(1));
 
         System.out.println("###############################################################");
+        // passing as payload
         given()
                 .body(List_Payload)
                 .log()

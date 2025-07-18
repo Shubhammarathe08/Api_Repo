@@ -1,5 +1,7 @@
 package Payload_Passing;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import io.restassured.RestAssured;
 
 import java.util.ArrayList;
@@ -9,7 +11,7 @@ import java.util.Map;
 
 public class Simple_Object_Pojo {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws JsonProcessingException {
 
         //for main Object
         Map<String,Object> Obj_Payload =  new LinkedHashMap<>();
@@ -66,6 +68,10 @@ public class Simple_Object_Pojo {
 
      System.out.println(Obj_Payload);
 
+     // Java object to json string
+        ObjectMapper obj_map = new ObjectMapper();
+        String json_data = obj_map.writerWithDefaultPrettyPrinter().writeValueAsString(Obj_Payload);
+        System.out.println(json_data);
         RestAssured
                 .given()
                 .body(Obj_Payload)
