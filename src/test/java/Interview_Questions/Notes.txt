@@ -4,7 +4,6 @@
 which allows two or more than two applications to communicate with each other
 internally or externally
 and provide a result to end users or to another API.“.
-
 ====================  RestAssured  =========================
 ** current version 5.5.0
 who maintains >>
@@ -18,7 +17,7 @@ Imp libraries -
 2. Gson
 3. json-Schema-Validator
 4. lombok
-5.
+5. jsonpath (rest assured in-built)
 6. XAMB >> atlast if nothing found
 
 

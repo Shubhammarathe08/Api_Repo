@@ -1,0 +1,332 @@
+
+What is API ?
+
+“application programming interface - An API is a set of codes and rules
+which allows two or more than two applications to communicate with each other
+internally or externally
+and provide a result to end users or to another API.“.
+
+Acts as a middleman between different applications,
+allowing them to interact
+without needing to know how each other works internally.
+=====================   REST vs SOAP  =========================
+
+| **Web Service**                                                               | **API**                                                                                       |
+| ----------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| Always needs a **network (web)** to communicate (HTTP/SOAP).                  | May or may not use a network. Can be local (e.g. Java API) or remote (REST API).              |
+| It is a **type of API** designed for remote machine-to-machine communication. | General interface for any software component to interact with another, not restricted to web. |
+
+
+✅ All web services are APIs because they provide an interface for communication between software components.
+ex. RESTful API exposed over HTTP , SOAP web service for banking transactions
+❌ Not all APIs are web services because some APIs are purely local and do not communicate over the web or network.
+ex. java api, Android Activity Lifecycle API
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+REST - Representational State Transfer
+Architecture/design Style: Follows a client-server model using HTTP/HTTPS.
+*** its not a protocol
+Stateless - Each request from the client contains all the information needed
+            (e.g., headers, parameters)to process it.
+            The server doesn’t store session data between requests.
+Data Format - Uses lightweight formats like JSON (mostly), XML, or plain text.
+json - java script object notation
+xml - eXtensible  mark up language
+plain text - anything
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+| Feature               | REST (Representational State Transfer)         | SOAP (Simple Object Access Protocol)          |
+|-----------------------|-----------------------------------------------|-----------------------------------------------|
+| **Type**              | Architectural style                           | Protocol                                      |
+| **State Management**  | Stateless                                     | Can be stateful                               |
+| **Data Format**       | JSON, XML, plain text                         | XML only                                      |
+| **Protocol**          | HTTP/HTTPS (primarily)                        | HTTP, SMTP, TCP, etc.                         |
+| **Performance**       | Faster (lightweight)                          | Slower (XML overhead)                         |
+| **Security**          | HTTPS + OAuth/JWT                             | WS-Security (built-in)                        |
+| **Error Handling**    | HTTP status codes                             | SOAP fault messages                           |
+| **Caching**           | Supported                                    | Not natively supported                       |
+| **Use Cases**         | Web/mobile apps, public APIs                 | Enterprise systems, banking, healthcare      |
+| **Example**           | `GET /users/123` (JSON response)             | XML envelope with strict structure           |
+
+====================  Challenges  =========================
+API Documentation
+Access to db (third party app - db) | CRUD operation
+Authorization overhead
+
+A. Initial Setup Complexity
+Requires:
+Framework setup (e.g., RestAssured, Postman + Newman).
+Mocking dependencies (e.g., WireMock for third-party APIs).
+Test Data ( faker library )
+
+B. Dynamic Data Handling
+APIs often return changing data (e.g., timestamps, IDs).
+Solutions:
+Regex/JSONPath extraction.
+Dynamic variable storage (e.g., pm.environment.set() in Postman).
+
+C. Authentication & Security Testing
+Handling:
+OAuth 2.0, JWT tokens (token expiry issues).
+Rate-limiting (avoiding false failures).
+
+D. Flaky Tests
+Tests fail due to:
+Network issues.
+Unstable test environments ( microservices response , unavailable due to deployment/changes )
+Race conditions (e.g., async API calls).
+
+E. Versioning & Backward Compatibility
+Ensuring new API versions don’t break existing clients.
+Testing deprecated endpoints.
+
+F. CI/CD Integration
+Automating tests in Jenkins/GitHub Actions requires:
+Environment management (dev/staging/prod).
+Test reporting (e.g., Allure, Extent Reports).
+
+Rate Limiting
+
+A restriction on how many API requests a client can make in a given time (e.g., *100 requests/hour*).
+Prevents abuse, ensures fair usage, and protects servers from overload.
+If the limit is exceeded, the API responds with:
+http
+HTTP/1.1 429 Too Many Requests
+Retry-After: 3600  # Wait 1 hour
+
+Race Condition
+
+When concurrent requests cause unexpected behavior due to timing issues
+ (e.g., two users booking the last ticket).
+
+solution >>
+Use Synchronization (When Necessary)
+Problem: Tests need sequential execution for certain steps.
+Solution:
+Use synchronized blocks or
+TestNG @BeforeClass.
+====================  Swagger  =========================
+==================   Auth Techniques   =====================
+No Auth
+Session/Cookie based authentication
+Basic Auth
+Digest Auth
+Bearer Token
+JWT
+OAuth 1.0 vs OAuth 2.0
+
+OAuth (Open Authorization)  Open Authorization
+>> is a protocol for authorization,
+   allowing one application to access resources
+   on behalf of a user without sharing their credentials
+>> Grant limited access to your resources to third-party apps without giving them your password
+>>OAuth = Authorization (What can you do?)
+  OpenID Connect = Authentication (Who are you?)
+
+| **Aspect**             | **OAuth 1.0**     2007                                                              | **OAuth 2.0**     2012                                                                                             |
+| ---------------------- | ----------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
+| **Signing**            | Every request is signed using client secret and token secret with HMAC-SHA1 or RSA. | No per-request signing; uses Bearer tokens sent in headers.                                                    |
+| **Transport Security** | Does not require HTTPS (signatures protect requests).                               | Requires **HTTPS** for security since tokens are not signed per request.                                       |
+| **Token Type**         | Uses **access token + token secret** (both needed).                                 | Uses **Bearer tokens** and optional refresh tokens.                                                            |
+
+
+==================   session vs cookies  ====================
+| **Aspect**        | **Session**                                                                  | **Cookies**                                                               |
+| ----------------- | ---------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| **Storage**       | Stored on **server-side** (memory, file, DB, or distributed store)           | Stored on **client-side browser**                                         |
+| **Size limit**    | No strict limit (depends on server config and memory)                        | Limited (\~4KB per cookie)                                                |
+| **Lifetime**      | Ends when user closes browser or after timeout (e.g., 20 mins idle)          | Can be set to expire at a specific time/date or last until browser closes |
+| **Security**      | More secure as data isn’t exposed to client directly                         | Less secure; user can view and modify them                                |
+| **Usage**         | Store sensitive data like user authentication state, session ID, preferences | Store non-sensitive data like user preferences, theme choice, tokens      |
+| **Accessibility** | Only server can access session data                                          | Client (browser) and server can access cookies                            |
+| **Performance**   | Slightly slower as it involves server resource access                        | Faster as they are sent with every HTTP request                           |
+| **Example**       | Login session to keep user logged in across requests                         | Remembering language preference on a site                                 |
+============================   cache  ================================
+Caching >> performance optimization technique
+         that stores copies of frequently accessed data in a fast-access layer,
+         reducing the need to repeatedly fetch it from the original source (like a database or API).
+how to do ?
+1. First Request (Cache Miss)
+Request: Client asks for data (e.g., GET /products/123).
+Server: Checks cache → Not found → Fetches from DB.
+Response: Sends data back and stores it in cache.
+HTTP/1.1 200 OK
+Cache-Control: public, max-age=600  # Cache for 10 mins
+ETag: "abc123"  # Unique version ID
+
+2. Subsequent Requests (Cache Hit)
+Request: Same GET /products/123.
+Cache Layer: Returns stored data without hitting the server.
+If expired: Server revalidates (checks ETag/Last-Modified).
+
+Browser Cache (Client-Side)
+Stores responses (images, HTML, API data) locally ?? | Chrome: %LocalAppData%\Google\Chrome\User Data\Default\Cache
+Controlled via HTTP headers:-
+Cache-Control: max-age=3600  # 1-hour cache
+ETag: "xyz789"  # Data version tag
+
+Application Cache (Server-Side)
+In-Memory (Redis, Memcached):
+==============  HTTP Methods  ===============
+idempotent :- "Making the same request once or multiple times has the same effect on the server."
+
+Get
+>> Retrieve a resource or a collection of resources.
+>> Idempotent :- same effect : yes | safe : yes
+ex. 200 success , 404 npt found
+
+Post
+>> Create a new resource.
+>> Idempotent: ❌ No (Multiple calls may create duplicates with new id)
+ex. 201 Created (Success + Location header) , 400 400 Bad Request (Invalid data)
+
+Put
+>> (Replace)  Replace an entire resource (full update)
+>> Idempotent:  ✅ Yes (Repeating the same request has no further effect).
+>>  expects the complete representation of the resource.
+>> You must send all fields, even if only one field is modified
+>> condition:- resource should exist |
+>> It depends on the API design | ** if not - it will not replace, but create new resource
+ex.
+If the resource exists → Full update (HTTP 200 or 204).
+If the resource doesn’t exist → Creation (HTTP 201).
+If creation is disabled → 404 Not Found.
+
+Patch
+>> (Partial Update) update some part of resource
+>> When PATCH is Not Idempotent (Default Behavior)
+PATCH sends partial updates, and repeated requests may produce different results if the resource state changes between calls.
+>> When PATCH is  Idempotent
+?? can we replace whole resource | Yes
+ex. 200 OK or 204 No Content (Success) , 400 Bad Request (Invalid partial data)
+
+Delete
+>> Delete a resource.
+>> Idempotent:  ✅ Yes (Even if the resource is already deleted).
+ex. 204 No Content (Success) , 404 Not Found (Resource doesn’t exist)
+
+Head
+>> Fetch Meta data | Retrieve only headers (no body). Useful for checking if a resource exists.
+HTTP/1.1 200 OK
+Content-Type: application/json
+Content-Length: 124
+ETag: "abc123"
+Last-Modified: Mon, 15 Jul 2024 12:00:00 GMT
+
+Options
+>>  List supported HTTP methods for a resource.
+HTTP/1.1 200 OK
+Allow: GET, POST, HEAD, OPTIONS
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: GET, POST
+==================   Serialization vs De-Serialization   =====================
+Java Object >> Byte Stream
+Converting a Java object into a structured format (JSON/XML) for network transmission.
+
+Byte Stream >> Java Object
+Converting JSON/XML back into a Java object.
+
+==================   What to check in API testing   =====================
+status code :- look into it >> based on status code
+errors/validation - msgs
+json schema validation
+request
+ >> endpoints (length)
+ >> parameters ( / base path, {} path param , ? query param , # fragment)
+ >> headers
+ >> request body payload (syntax, fields, data type, length)
+ >> multipart (file, format, size)
+response
+ >> status code
+ >> headers
+ >> response time
+ >> body
+ >> mandatory and non-mandatory fields
+ >> content length
+ >> error/validation/success msgs
+security
+ >> authentication
+ >> authorization | no auth, wrong bearer token, expired token
+ >> uniqueness and correct response code
+connect to db and match response with db entry
+rate limit
+race condition
+backward compatibility
+deprecated endpoints
+================================================================================================================
+https://api.example.com:8443/v3/customers/{customerId}/orders?status=shipped&limit=10#order-history
+
+https >> protocol
+api.example.com >> domain
+https://api.example.com >> base URI
+:8443 >> port
+/v1/   >> Base path (API version)
+customers/{customerId}/orders  |  /customers/123/orders  >> Resource path with a path parameter (123)
+?status=pending >> Query parameter (filtering orders)
+&limit=1 >> & separates multiple query parameter
+#order-hist >> # fragment identifier | client side only + never sent to the server in HTTP requests.
+               In Web Pages: Jumps to a specific section (e.g., #chapter-2 in an HTML page).
+                In APIs: Often used by frontend frameworks (like React/Angular) for client-side routing.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+URI (  URI = umbrella term for both URL and URN. )
+>>  A string that uniquely identifies a resource on the internet or within a system.
+>> Entire string is a URI as it uniquely identifies a resource.
+
+Url
+>> Locator of resource with protocol
+>> URI that not only identifies but locates the resource by providing its address and access mechanism (protocol).
+>> Entire string is a Url as it uniquely identifies a resource.
+
+Endpoint
+>> The endpoint is typically defined as method + path, e.g.:
+GET /v3/customers/{customerId}/orders
+
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+What happens when a user hits a URL?
+Stepwise explanation:
+  User enters URL in browser (e.g. https://www.example.com).
+Browser parses the URL to extract:
+   Protocol: HTTPS
+   Domain Name: www.example.com
+   Path: / (home page)
+   Query parameters (if any).
+DNS (Domain Name System)  Resolution: (return ip address of server)
+>> dns maps domain names ↔ IP addresses
+>> return ip address of server
+>> It is the IP address of the server where the application is hosted
+Browser checks cache (browser, OS, router) for IP address.
+  If not found, sends request to DNS server to resolve domain name → IP address.
+TCP Connection:
+  Browser initiates a TCP connection to the resolved IP on port 443 (HTTPS) using the TCP three-way handshake.
+TLS Handshake (if HTTPS):
+  Browser and server establish a secure encrypted connection using SSL/TLS.
+HTTP Request Sent:
+  Browser sends an HTTP GET request to the server for the resource /.
+Server Processes Request:
+  Web server receives request, routes it to appropriate handler (static file, backend service, or application logic).
+Server Responds:
+  Sends back an HTTP response with status code, headers, and body (e.g. HTML content).
+Browser Renders Response:
+  Parses HTML, makes further requests for CSS, JS, images.
+Renders the final page for the user.
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Scenario	                     Status Code	                      Typical Error Message
+Malformed JSON	                   400 Bad Request	                     "Malformed JSON request"
+Wrong data type	                   400 Bad Request	                     "Invalid type for field"
+Missing JSON header	               415 Unsupported Media Type	         "Expected JSON content-type"
+No bearer token	                   401 Unauthorized	                     "Missing Authorization header"
+Expired bearer token	           401 Unauthorized	                     "Token expired"
+Invalid bearer token	           403 Forbidden	                      "Invalid token"
+Unhandled exception            500 Internal Server Error                 "An unexpected error occurred"
+database error                 500 Internal Server Error                 "Database connection failed"
+Downstream service crashes     502 Bad Gateway                           "service unavailable"
+nw issue b/w gateway-service   502 Bad Gateway                           "Failed to connect to service"
+Service down - maintenance     503 Service Unavailable                   "service undermaintenance"
+during deployments             503 Service Unavailable                    "Service temporarily unavailable"
+Rate limiting triggered        503 Service Unavailable                      "Too many requests"
+Database queries timing out    504 Gateway Timeout                          "Database query timed out"
+External API calls hanging     504 Gateway Timeout                      	"API did not respond"
+too large response             504 Gateway Timeout                      	"API did not respond within time"
+(request) payload large        413 Payload Too Large                        "Maximum allowed body size is 10MB"
+(request) get url toooo long   414 URI Too Long                             "URLs exceeding server limits"
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>

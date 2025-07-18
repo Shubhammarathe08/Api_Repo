@@ -1,0 +1,37 @@
+[
+  "value1",
+  "list/array cant have 'k':'v' format , can have {} or [] " ,
+  " can't write [  'k1':'v1' , {} , [] ]  >> 'k1':'v1' not allowed",
+  {
+    "id": 1,
+    "name": "Aanand Iyer",
+    "email": "aanand_iyer@wilkinson-roob.example",
+    "gender": "female",
+    "status": true,
+    "city": "bhopal"
+  },
+  {
+    "addresses": [
+      {
+        "state": "maharsahtra",
+        "city": "pune"
+      },
+      {
+        "state": "madhya pardesh",
+        "city": "burhanpur"
+      }
+    ]
+  },
+  {
+    "names": [
+      "shubham",
+      "satyam",
+      "nilesh",
+      "rani"
+    ]
+  },
+  [
+    123,
+    456
+  ]
+]

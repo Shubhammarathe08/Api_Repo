@@ -1,31 +1,45 @@
 package Http_Methods;
 
-
 import io.restassured.RestAssured;
-import io.restassured.http.ContentType;
+import io.restassured.http.Header;
+import io.restassured.http.Headers;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import io.restassured.response.ValidatableResponse;
-import org.testng.Assert;
+import io.restassured.specification.RequestSpecification;
+import junit.framework.Assert;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.concurrent.TimeUnit;
-
-import static io.restassured.RestAssured.given;
+import static io.restassured.RestAssured.*;
 
 public class GetExample {
 
-    public static void main(String[] args){
+    public static void main(String[] args) throws FileNotFoundException {
 
-        Response res =
-                given() // return type RequestSpecification
-                                       .log().all().
-                 when() // return type RequestSpecification
-                  .get("https://restful-booker.herokuapp.com/booking/4");
 
-        System.out.println(res.asString());
-        System.out.println( res.getStatusCode() );
-        System.out.println( res.headers() );
-        System.out.println( res.timeIn(TimeUnit.SECONDS) );
-        System.out.println( res.body().asString() );
+                ValidatableResponse r =given() // return type RequestSpecification
+                        .when().get().then();
+                   r.assertThat();
+                   r.statusCode(200);// validate status code
+                   r.extract().response();//ResponseOptions
+                   r.extract().time();// response time
+        r.extract().body().asString();
+        JsonPath js = JsonPath.from(r.extract().body().asString());
+        JsonPath js1 = JsonPath.from(given().when().get("").getBody().asString());
+
+        Response r1 =given() // return type RequestSpecification
+                .when().get();
+        r1.getHeader("");
+        Assert.assertEquals("","");
+
+
 
 
 //

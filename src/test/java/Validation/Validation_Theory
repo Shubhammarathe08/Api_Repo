@@ -1,0 +1,138 @@
+
+
+>>>>>>>>>>>>>>>>>>>>>>>>  ValidatableResponse  >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+status code
+.then()
+    .statusCode(200)  // exact status code
+    .statusLine("HTTP/1.1 200 OK")  // exact status line
+    .statusLine(containsString("OK")) // partial match
+    .contentType(ContentType.JSON); // content type
+
+body
+
+>> verify size of nested objects
+    .body("students", hasSize(3))  // Verify array/list size
+    .body("Expense", hasSize(6)); // Verify array/list size
+
+>> single object verification
+// Verify first student's details
+.body("students[0].id", equalTo(123))
+.body("students[0].alive", is(true))
+.body("students[0].balance", equalTo(3000f))  // float comparison
+
+>> Finding Specific Students in nested array/list
+// Find student with id=456 and verify details
+.body("students.find { it.id == 456 }.name", equalTo("sumit"))
+.body("students.find { it.id == 456 }.age", equalTo(96))
+.body("students.find { it.id == 789 }.alive", is(true))
+
+
+>> filtering
+// Verify all students have id > 100
+.body("students.id", everyItem(greaterThan(100)))
+// Verify at least one student is alive
+.body("students.alive", hasItem(true)))
+// Verify no student has negative balance
+.body("students.balance", everyItem(greaterThanOrEqualTo(0f)))
+
+>> Array check
+.body("Expense", contains(10, 20, 30, 40, 50, 60))  // Exact order
+.body("Expense", hasItems(20, 40, 60))  // Contains these values
+.body("Expense.min()", is(10))  // Minimum value
+.body("Expense.max()", is(60))
+
+>> Nested Object Validation
+// Address validation
+.body("addresses.state", equalTo("madhya pradesh"))
+.body("addresses.city", equalToIgnoringCase("BURHANPUR"))  // Case insensitive
+
+>>>>>>>>>>>>>>>>>>>>>>>>  JsonPath from  >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+ Refer >> Simple_Object_Json
+  { nested }  // object/map | allowed "k":"v" | not allowed - direct [],{}
+ValidatableResponse r = given().when().get().asString();
+String json_res_str = r.extract().body().asString();
+
+Response r = given().when().get();
+String json_res_str =  r.getBody().asString();
+JsonPath json1 = JsonPath.from(json_res_str);
+
+ Get length of root object (number of top-level keys)
+int rootLength = json1.getMap("$").size();
+System.out.println("Root object length: " + rootLength); // 3
+
+ Get arrays/lists
+List<Map<String, Object>> students = json1.getList("students");
+System.out.println("Students count: " + students.size()); // 3
+
+List<Integer> expenses = json1.getList("Expense");
+System.out.println("First expense: " + expenses.get(0)); // 10
+
+ Access any key inside object
+String state = json1.getString("addresses.state");
+System.out.println("State: " + state); // madhya pradesh
+
+Access nested array elements
+String secondStudentName = json1.getString("students[1].name");
+System.out.println("Second student: " + secondStudentName); // sumit
+
+Get nested objects
+Map<String, String> addresses = json1.getMap("addresses");
+System.out.println("City: " + addresses.get("city")); // burhanpur
+-------------------------------------------------------------------------------------------------------
+ Refer >> Simple_Array_Json
+  [ nested ]  // array/list | allowed only values - "v" , {} , [] | not allowed - direct "k":"v"
+JsonPath json2 = JsonPath.from(file2);
+// 1. Get length of root array
+int rootArrayLength = json2.getList("$").size();
+System.out.println("Root array length: " + rootArrayLength); // 3
+
+Get nested arrays/lists
+
+Map<String, Object> firstElement = json2.getMap("$[0]");
+System.out.println("1st ele: " + firstElement);
+
+List<Map<String, String>> addresses = json2.getList("$[1].addresses");
+System.out.println("Address count: " + addresses.size()); // 2
+
+List<String> nameList = json2.getList("$[2]");
+System.out.println("Name list: " + nameList); // [shubham, satyam, nilesh, rani]
+
+Access elements by index
+Map<String, Object> firstElement = json2.getMap("$[0]");
+System.out.println("First element keys: " + firstElement.keySet());
+// [id, name, email, gender, status, city]
+
+Direct array access
+String firstName = jsonPath.getString("$[2][0]");
+System.out.println("First name: " + firstName); // "shubham"
+
+boolean isAlive = jsonPath.getBoolean("$[1].is_alive");
+System.out.println("is_alive: " + isAlive); // true
+
+
+
+
+======================      Response     ========================
+Response r1 = given().when().get(); | *** Stores response and then reuses wherever required
+
+// Get all headers
+Headers allHeaders = r1.getHeaders();
+// Get specific header
+String contentType = r1.getHeader("Content-Type");
+// Get status code
+int statusCode = r1.getStatusCode();
+// Get response body
+String body = r1.getBody().asString();
+// Get cookies
+Map<String, String> cookies = r1.getCookies();
+// Get response time
+long time = r1.getTime();
+
+assertThat(r1.getHeader("Content-Type"), containsString("application/json"));
+assertThat(r1.getHeaders().hasHeaderWithName("X-RateLimit-Limit"), is(true));
+
+// Verify status
+assertThat(r1.getStatusCode(), equalTo(200));
+// Verify body
+assertThat(r1.getBody().jsonPath().getString("users[0].name"), equalTo("John"));

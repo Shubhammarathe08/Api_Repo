@@ -1,0 +1,77 @@
+
+
+      RequestSpecification req = given(); //returns - Request Specification
+                  Response res = req.when().get()/post()/put()/patch()/delete(); //return Response
+               ValidatableResponse v_res = res.then(); //returns ValidatableResponse
+>>>>>>>>>>>>>>>>>>>>>>>>  Given() >>>>>>>>>>>>>>>>>>>>>>>>>>>>
+        // headers
+        req.log().all();
+        req.baseUri("").basePath("").pathParam("","").queryParam("","");
+
+        req.header("Authorization", "Bearer token123");//single
+        Header h11 = new Header("Authorization", "Bearer token123");
+        req.header(h11);
+
+        req.header("Content-Type", "application/json");//pass 2nd to combine
+
+        req.headers(                                        // multiple
+                "Authorization", "Bearer token123",
+                "Content-Type", "application/json",
+                "Accept", "application/json"
+        );
+        Header h1 = new Header("Authorization", "Bearer token123");
+        Header h2 = new Header("Content-Type", "application/json");
+        Header h3 = new Header("Accept", "application/json");
+
+        Headers headers = new Headers(h1, h2, h3);
+        req.headers(headers);
+
+        Map<String, String> headerMap = new HashMap<>(); //hashmap
+        headerMap.put("Authorization", "Bearer token123");
+        headerMap.put("Content-Type", "application/json");
+        headerMap.put("Accept", "application/json");
+        req.headers(headerMap);
+--------------------------------------------------------------------------------------------------------------
+        // paths
+        //url :- https://api.example.com/v1/users
+
+            req.baseUri("https://api.example.com");
+            req.basePath("/v1/users");
+
+        //url :- /v1/users/{status}/{role}/{limit}
+        req.param("status", "active"); //path param {}
+        req.params("role", "admin", "limit", "5");//multiple path param
+
+        // /v1/users/{userId}/customers/{customerId}/orders/{orderId}
+        // /v1/users/123/customers/45/orders/987
+        req.pathParam("userId", "123");//path param {}
+        req.pathParams("customerId", "45", "orderId", "987");//multiple path param
+
+        // /v1/users/123/customers/45/orders/987?page=2&status=shipped&limit=10
+        req.queryParam("page", "2"); //query param
+        req.queryParams("status", "shipped", "limit", "10");//multiple query param
+
+        System.out.println(res.asString());
+        System.out.println( res.getStatusCode() );
+        System.out.println( res.headers() );
+        System.out.println( res.timeIn(TimeUnit.SECONDS) );
+        System.out.println( res.body().asString() );
+---------------------------------------------------------------------------------------------------------------------
+    req.body("json string"); //raw json string
+    req.body(new File("src/test/resources/user.json")); // json file
+    req.body(new LinkedHashMap<>()); // hashmap
+    req.body("Java Object >> new FinalPayload() "); // java object
+-------------------------------------------------------------------------------------------------------------------
+  //others
+
+   req.log().all();// prints all available details of the HTTP request and response to the console
+   RestAssured.useRelaxedHTTPSValidation();  // Global setting for all requests
+   req.relaxedHTTPSValidation();  // Ignores all SSL/TLS certificate errors ** use on testing env
+   req .keyStore("/path/to/keystore.jks", "password"); // accept specific cert Your custom keystore
+   req.multiPart("file", new File("test.pdf")); //simple file upload
+   req.multiPart("file", new File("test.pdf"));
+   req.multiPart("description", "Quarterly report");  // file + Text field (form data)
+   InputStream fileStream = new FileInputStream("test.pdf");//for large file
+   req.multiPart("file", "test.pdf", fileStream, "application/pdf");  // + content-type
+
+//>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
