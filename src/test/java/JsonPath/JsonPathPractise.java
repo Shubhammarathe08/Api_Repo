@@ -11,20 +11,17 @@ public class JsonPathPractise {
     public static void main(String[] args){
 
         String file_path
-                = "C:\\Users\\Lenovo\\Java_Projects\\Api_Automation" +
-                  "\\src\\test\\java\\TestData\\Complex_Array_People.json";
+                = "C:\\Users\\shubh\\IdeaProjects\\Api_Repo\\src\\test\\java\\TestData\\Complex_Array_People.json";
         File  Complex_Array_People = new File(file_path);
         JsonPath js_p1 = new JsonPath(Complex_Array_People);
 
         String file_path1
-                = "C:\\Users\\Lenovo\\Java_Projects\\Api_Automation" +
-                "\\src\\test\\java\\TestData\\Complex_Object_People_Address.json";
+                = "C:\\Users\\shubh\\IdeaProjects\\Api_Repo\\src\\test\\java\\TestData\\Complex_Object_People_Address.json";
         File  Complex_Object_People_Address = new File(file_path1);
         JsonPath js_p2 = new JsonPath(Complex_Object_People_Address);
 
         String file_path2
-                = "C:\\Users\\Lenovo\\Java_Projects\\Api_Automation" +
-                "\\src\\test\\java\\TestData\\Complex_Array_Of_Array.json";
+                = "C:\\Users\\shubh\\IdeaProjects\\Api_Repo\\src\\test\\java\\TestData\\Complex_Array_Of_Array.json";
         File  Complex_Array_Of_Array = new File(file_path2);
         JsonPath js_p3 = new JsonPath(Complex_Array_Of_Array);
 
