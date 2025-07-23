@@ -1,0 +1,104 @@
+
+preemptive >> Sends header immediately.
+---------------------------------------------------------------------------------------------------------
+challenged >> Waits for server’s 401 response before sending.
+---------------------------------------------------------------------------------------------------------
+No Auth
+>> Public APIs that require no credentials.
+   given()  // No auth setup
+   .when()
+       .get("https://api.example.com/public")
+   .then()
+       .statusCode(200);
+---------------------------------------------------------------------------------------------------------
+Digest ( username , password )
+>> Server sends a nonce (one-time code), client responds with a hashed value of credentials + nonce.
+>> More secure than Basic Auth.
+>> It’s an authentication mechanism where:
+   Client requests a resource.
+   Server responds with a nonce (random one-time-use number) + auth challenge.
+   Client hashes (encrypts) -> the username, password, nonce, HTTP method, and URI.
+   Server verifies the hashed response to authenticate the client.
+>> given()
+       .auth().digest("user", "pass")  // Handles nonce automatically
+   .when()
+       .get("https://api.example.com/digest-auth");
+---------------------------------------------------------------------------------------------------------
+Basic Auth ( username , password ) Base64
+>> Credentials sent as username:password encoded in Base64 in the Authorization header.
+>> It’s an authentication mechanism where:
+   Client requests a resource by sending username and password encoded in Base64 along with the request header.
+   Server decodes the Base64 string to retrieve credentials.
+   Server validates the username and password against its stored records.
+   If correct, access is granted; else, access is denied.
+>> // Preemptive (always sends credentials)
+given()
+    .auth().preemptive().basic("user", "pass")
+.when()
+    .get("https://api.example.com/secure");
+
+// Challenged (waits for 401)
+given()
+    .auth().basic("user", "pass")  // Only sends if challenged
+---------------------------------------------------------------------------------------------------------
+Bearer Token (java web token)
+
+>> “In APIs where login returns a token,the client sends credentials to the login endpoint,
+    receives a token in response, and uses this token in the Authorization header for further requests.
+    It’s more secure than Basic Auth since the password isn’t sent repeatedly.
+    In Rest Assured, we first extract the token using a POST call and
+    then pass it using .auth().oauth2(token) for subsequent requests.”
+>> Token (e.g., JWT) sent in the Authorization: Bearer <token> header.
+It’s an authentication mechanism where:
+Client obtains a token (usually via login, OAuth2 flow, or issued by the server).
+Client sends the token in the Authorization header with each request.
+Server validates the token to check:
+ Is it valid?
+ Is it expired?
+ What permissions does it grant?
+If valid, access is granted to the resource.
+>> Client (you) sends a POST request to the login endpoint with:
+   Username and password in the body (JSON format).
+   Content-Type: application/json header.
+   Server receives these credentials, verifies them against its database.
+   If valid:
+   Server generates a token (usually JWT or any bearer token).
+   Returns a JSON response containing the token.
+
+given()
+    .header("Authorization", "Bearer abc123")  // Manual header
+.when()
+    .get("https://api.example.com/data");
+
+// OR using REST Assured's shortcut:
+given()
+    .auth().oauth2("abc123")  // Auto-adds Bearer prefix
+
+---------------------------------------------------------------------------------------------------------
+OAuth 1.0
+>> Uses consumerKey, consumerSecret, accessToken, and tokenSecret to sign requests.
+given()
+    .auth().oauth(
+        "consumerKey", "consumerSecret",
+        "accessToken", "tokenSecret")  // Signs the request
+.when()
+    .get("https://api.example.com/oauth1");
+---------------------------------------------------------------------------------------------------------
+OAuth 2.0
+>> Simpler than OAuth 1.0. Uses access_token (often JWT).
+// Client Credentials Flow (auto-fetch token):
+String token = given()
+    .params(
+        "grant_type", "client_credentials",
+        "client_id", "id",
+        "client_secret", "secret")
+.when()
+    .post("https://auth.server.com/token")
+.then()
+    .extract().path("access_token");
+
+given()
+    .auth().oauth2(token);  // Use the fetched token
+---------------------------------------------------------------------------------------------------------
+SSL
+

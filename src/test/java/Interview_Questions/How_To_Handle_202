@@ -1,0 +1,33 @@
+import static java.util.concurrent.TimeUnit.SECONDS;
+import static org.awaitility.Awaitility.await;
+
+public Response getAsyncResponse(String endpoint) {
+    // Configure timeouts (still good practice)
+    RestAssuredConfig config = config().httpClientConfig(
+        new HttpClientConfig()
+            .setParam("http.connection.timeout", 60000)
+            .setParam("http.socket.timeout", 60000));
+
+    // Initial request
+    Response response = given()
+        .config(config)
+        .get(endpoint);
+
+    // Handle 202 response
+    if (response.getStatusCode() == 202) {
+        String statusUrl = response.getHeader("Location");
+
+        await().atMost(60, SECONDS)
+               .pollInterval(2, SECONDS)
+               .until(() -> {
+                   Response statusResponse = given()
+                       .config(config)
+                       .get(statusUrl);
+                   return statusResponse.getStatusCode() != 202;
+               });
+
+        response = given().get(statusUrl);
+    }
+
+    return response;
+}
