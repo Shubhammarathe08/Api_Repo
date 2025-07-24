@@ -40,13 +40,18 @@ public class JsonPathPractise {
             System.out.println(js_p1.get("["+i+"]").toString());
         }
 
-        System.out.println(js_p1.get("id").toString());// get all matching keys : values
+        System.out.println(js_p1.get("id").toString()+" >> only id not obj ");// get all matching keys : values
 
         List<Integer> ids = js_p1.getList("id");//lit of all matching elements
         System.out.println(ids+" >> ids");
 
         List<Integer> names = js_p1.getList("name");//lit of all matching elements
         System.out.println(names+" >> names");
+
+
+        // id<10
+        List<Object> filtered_obj_11 = js_p1.getList("findAll{it.id<=5 & it.id%2==0}.id");
+        System.out.println(  "filtered_obj id only < 5 &even >>"+filtered_obj_11);
 
         //use filters find findAll
         List<Object> filtered_obj = js_p1.getList("findAll{it.id<=5}");
